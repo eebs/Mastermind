@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
 
@@ -11,6 +12,12 @@ public class Game {
 	
 	public Game(GameMode gameMode) {
 		mode = gameMode;
+		ArrayList<String> keyColors = new ArrayList<String>();
+		Random random = new Random();
+		for(int i = 0; i < mode.getSlots(); i++){
+			keyColors.add(gameMode.getColors()[random.nextInt(gameMode.getColors().length)]);
+		}
+		key = new Row(keyColors);
 	}
 	
 	public boolean isSolved(){

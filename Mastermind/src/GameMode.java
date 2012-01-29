@@ -7,8 +7,8 @@ public class GameMode {
 	private int slots;
 	
 	public GameMode(String[] colors, int slots){
-		this.colors = colors;
-		this.slots = slots;
+		this.setColors(colors);
+		this.setSlots(slots);
 	}
 	
 	
@@ -19,5 +19,25 @@ public class GameMode {
 			String[] easyColors = Arrays.copyOf(availableColors, availableColors.length - 1);
 			return new GameModeEasy(easyColors, 4);
 		}
+	}
+
+
+	public String[] getColors() {
+		return colors;
+	}
+
+
+	public void setColors(String[] colors) {
+		this.colors = colors;
+	}
+
+
+	public int getSlots() {
+		return slots;
+	}
+
+
+	public void setSlots(int slots) {
+		this.slots = slots;
 	}
 }
