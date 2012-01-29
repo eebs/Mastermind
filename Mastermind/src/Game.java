@@ -9,8 +9,8 @@ public class Game {
 	private ArrayList<Integer> hints;
 	private int hintCount;
 	
-	private void init(GameMode mode){
-		
+	public Game(GameMode gameMode) {
+		mode = gameMode;
 	}
 	
 	public boolean isSolved(){

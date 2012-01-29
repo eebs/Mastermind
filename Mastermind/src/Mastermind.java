@@ -6,6 +6,14 @@ public class Mastermind {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		print("Hello, and welcome to Mastermind!");
+		//helptext
+		
+		print("Enter a game mode, either 'easy' or 'hard'.");
+		String mode = scanner.nextLine();
+		GameMode gameMode = GameMode.factory(mode);
+		
+		Game game = new Game(gameMode);
+		
 
 	}
 	
