@@ -1,12 +1,20 @@
+import java.util.Scanner;
+
 
 public class Mastermind {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		print("Hello, and welcome to Mastermind!");
 
+	}
+	
+	private static void print(String s){
+		System.out.println(s);
+	}
+	
+	private static void print(){
+		System.out.println();
 	}
 
 }
