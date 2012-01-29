@@ -21,7 +21,6 @@ public class GameMode {
 		}
 	}
 
-
 	public String[] getColors() {
 		return colors;
 	}
