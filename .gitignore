@@ -3,3 +3,4 @@
 .project
 .metadata/
 bin/
+.DS_Store
