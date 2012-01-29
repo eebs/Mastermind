@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.StringBuffer;
+import java.util.Calendar;
 
 public class StatGatherer {
 	String fName = "UsageLog.csv";
@@ -40,7 +41,7 @@ public class StatGatherer {
 	}
 	
 	/*loadLog
-	 * Loads the current log file into ?? or creates a new log file if
+	 * Returns the current log file as a string. Creates a new log file if
 	 * one does not already exist.
 	 */
 	@SuppressWarnings({ "finally" })
@@ -77,6 +78,45 @@ public class StatGatherer {
 		}
 	}//end loadLog
 	
+	/*logGame
+	 * 
+	 */
+	public boolean logGame(Game game){
+		//prepare the row for writing
+		StringBuffer entry = new StringBuffer();
+		for (int i=0;i<this.headerItems.length;i++){
+			if (this.headerItems[i] == "date"){
+				entry.append(Calendar.getInstance().toString()+",");
+			}
+			else if (this.headerItems[i] == "difficulty"){
+				//entry.append(game.getGameMode().getClass().getName());
+				entry.append("4");
+			}
+			else if (this.headerItems[i] == "guesses"){
+				entry.append("3");
+			}
+			else if (this.headerItems[i] == "hints"){
+				entry.append("2");
+			}
+		}
+		
+		//load the previous log
+		String prevLog = this.loadLog();
+		
+		//try to write the new log
+		try{
+			BufferedWriter fileOut = new BufferedWriter(new FileWriter(this.fName));
+			fileOut.write(prevLog);
+			fileOut.write(entry.toString());
+			fileOut.close();
+			return true;
+		}
+		catch(IOException e){
+			System.out.println("The new entry could not be added.");
+			return false;
+		}
+	}
+	
 	
 /*================================
  * Private methods
@@ -96,6 +136,9 @@ public class StatGatherer {
 	/*Main method for testing*/
 	public static void main(String [] args){
 		StatGatherer s = new StatGatherer();
-		System.out.println(s.loadLog());
+		
+		//GameMode mode = new GameMode("easy");
+		//Game g = new Game(mode);
+		//s.logGame(game);
 	}//end main
 }
