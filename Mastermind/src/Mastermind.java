@@ -11,6 +11,7 @@ public class Mastermind {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		StatGatherer statGatherer = new StatGatherer();
 
 		print("Hello, and welcome to Mastermind!");
 		//helptext
@@ -28,6 +29,7 @@ public class Mastermind {
 			String response = parseInput(input, game);
 			print(response);
 		}
+		statGatherer.logGame(game);
 	}
 	
 	private static String parseInput(String input, Game game){
