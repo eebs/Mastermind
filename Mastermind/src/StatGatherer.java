@@ -4,13 +4,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.StringBuffer;
-import java.util.Calendar;
+import java.util.Date;
 
 public class StatGatherer {
 	String fName = "UsageLog.csv";
 	String[] headerItems = {"date", "difficulty", "guesses", "hints"};
 	
-	/*StatGatherers
+	/**StatGatherers
 	 * Construct a stat gather object with the default stats file name.
 	 */
 	public StatGatherer(){
@@ -24,7 +24,7 @@ public class StatGatherer {
 /*================================
  * Public methods
  */
-	/*getCSVHeader
+	/**getCSVHeader
 	 * Returns the various column names defined in headerItems
 	 * as a string, formatted to be the header of a CSV.
 	 */
@@ -40,7 +40,7 @@ public class StatGatherer {
 		return s.toString();
 	}
 	
-	/*loadLog
+	/**loadLog
 	 * Returns the current log file as a string. Creates a new log file if
 	 * one does not already exist.
 	 */
@@ -78,7 +78,7 @@ public class StatGatherer {
 		}
 	}//end loadLog
 	
-	/*logGame
+	/**logGame
 	 * 
 	 */
 	public boolean logGame(Game game){
@@ -86,17 +86,16 @@ public class StatGatherer {
 		StringBuffer entry = new StringBuffer();
 		for (int i=0;i<this.headerItems.length;i++){
 			if (this.headerItems[i] == "date"){
-				entry.append(Calendar.getInstance().toString()+",");
+				entry.append((new Date())+",");
 			}
 			else if (this.headerItems[i] == "difficulty"){
-				//entry.append(game.getGameMode().getClass().getName());
-				entry.append("4");
+				entry.append(game.getGameMode().getClass().getName());
 			}
 			else if (this.headerItems[i] == "guesses"){
-				entry.append("3");
+				entry.append(game.getNumberOfGuesses());
 			}
 			else if (this.headerItems[i] == "hints"){
-				entry.append("2");
+				entry.append(game.getHintCount());
 			}
 		}
 		
@@ -137,8 +136,9 @@ public class StatGatherer {
 	public static void main(String [] args){
 		StatGatherer s = new StatGatherer();
 		
-		//GameMode mode = new GameMode("easy");
-		//Game g = new Game(mode);
-		//s.logGame(game);
+		GameMode mode = GameMode.factory("easy");
+		Game g = new Game(mode);
+		s.logGame(g);
+		
 	}//end main
 }
