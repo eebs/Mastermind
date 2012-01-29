@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class GameMode {
+abstract class GameMode {
 	
 	private static String[] availableColors = {"R", "B", "G", "Y", "P", "O", "C"};
 	private String[] colors;
