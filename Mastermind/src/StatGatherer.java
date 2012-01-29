@@ -86,10 +86,10 @@ public class StatGatherer {
 		StringBuffer entry = new StringBuffer();
 		for (int i=0;i<this.headerItems.length;i++){
 			if (this.headerItems[i] == "date"){
-				entry.append((new Date())+",");
+				entry.append((new Date()));
 			}
 			else if (this.headerItems[i] == "difficulty"){
-				entry.append(game.getGameMode().getClass().getName());
+				entry.append(game.getMode().getClass().getName());
 			}
 			else if (this.headerItems[i] == "guesses"){
 				entry.append(game.getNumberOfGuesses());
@@ -97,6 +97,7 @@ public class StatGatherer {
 			else if (this.headerItems[i] == "hints"){
 				entry.append(game.getHintCount());
 			}
+			entry.append(",");
 		}
 		
 		//load the previous log
