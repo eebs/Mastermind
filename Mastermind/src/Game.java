@@ -42,6 +42,33 @@ public class Game {
 		board.add(row);
 		return true;
 	}
+
+	public String toString(){
+		for(int i = 0; i < 80; i++){
+			System.out.println();
+		}
+		return board.toString();
+	}
+
+	public GameMode getMode() {
+		return mode;
+	}
+
+	public void setMode(GameMode mode) {
+		this.mode = mode;
+	}
+
+	public int getHintCount() {
+		return hintCount;
+	}
+
+	public void setHintCount(int hintCount) {
+		this.hintCount = hintCount;
+	}
+
+	public int getNumberOfGuesses(){
+		return board.size();
+	}
 	
 }
 
