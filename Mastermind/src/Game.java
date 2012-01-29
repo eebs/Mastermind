@@ -4,7 +4,7 @@ import java.util.Random;
 public class Game {
 
 	private GameMode mode;
-	private ArrayList<Row> board;
+	private ArrayList<Row> board = new ArrayList<Row>();
 	private Row key;
 	private String helpText;
 	private ArrayList<Integer> hints;
@@ -21,7 +21,10 @@ public class Game {
 	}
 	
 	public boolean isSolved(){
-		return true;
+		if(board.size() == 0){
+			return false;
+		}
+		return key.equals(board.get(board.size() - 1));
 	}
 	
 	public String getHint(){
@@ -33,6 +36,10 @@ public class Game {
 	}
 	
 	public boolean addRow(Row row){
+		if(row.size() != mode.getSlots()){
+			return false;
+		}
+		board.add(row);
 		return true;
 	}
 	
