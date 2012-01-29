@@ -5,6 +5,7 @@ abstract class GameMode {
 	private static String[] availableColors = {"R", "B", "G", "Y", "P", "O", "C"};
 	private String[] colors;
 	private int slots;
+	private String name;
 	
 	public GameMode(String[] colors, int slots){
 		this.setColors(colors);
@@ -34,7 +35,10 @@ abstract class GameMode {
 	public int getSlots() {
 		return slots;
 	}
-
+	
+	public String getName(){
+		return name;
+	}
 
 	public void setSlots(int slots) {
 		this.slots = slots;
