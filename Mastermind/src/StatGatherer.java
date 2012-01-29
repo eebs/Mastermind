@@ -89,7 +89,7 @@ public class StatGatherer {
 				entry.append((new Date()));
 			}
 			else if (this.headerItems[i] == "difficulty"){
-				entry.append(game.getMode().getClass().getName());
+				entry.append(game.getMode().getName());
 			}
 			else if (this.headerItems[i] == "guesses"){
 				entry.append(game.getNumberOfGuesses());
