@@ -31,10 +31,6 @@ public class Game {
 		return "Hint";
 	}
 	
-	public void parseGuess(String guess){
-		
-	}
-	
 	public boolean addRow(Row row){
 		if(row.size() != mode.getSlots()){
 			return false;
@@ -47,7 +43,18 @@ public class Game {
 		for(int i = 0; i < 80; i++){
 			System.out.println();
 		}
-		return board.toString();
+
+		int boardSize = board.size();
+		String output = "";
+		for(int i = 0; i < boardSize; i++){
+			if(i != boardSize - 1){
+				output += "# ";
+			}else{
+				output += "> ";
+			}
+			output += board.get(i).toString() + "\n";
+		}
+		return output;
 	}
 
 	public GameMode getMode() {
@@ -68,6 +75,14 @@ public class Game {
 
 	public int getNumberOfGuesses(){
 		return board.size();
+	}
+
+	public Row getKey() {
+		return key;
+	}
+
+	public void setKey(Row key) {
+		this.key = key;
 	}
 	
 }

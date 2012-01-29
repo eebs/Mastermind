@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Mastermind {
 	private static boolean quit = false;
-	private static String helptext = "Type 'h' to see this menu, type 'quit' to exit the game. Enter all row guesses in the format 'R, G, B'.";
+	private static String helptext = "Type 'h' to see this menu, type 'quit' to exit the game. Enter all row guesses in the format 'R G B'.";
 	private static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class Mastermind {
 				//want to start a new game.
 				print("Your game has ended.  Would you like to play again? (y/n)");
 				String replay = scanner.nextLine();
-				if (replay.toLowerCase() == "y"){
+				if (replay.toLowerCase().equals("y")){
 					statGatherer.logGame(game);
 					game = startNewGame();
 				}
@@ -38,13 +38,20 @@ public class Mastermind {
 	}
 	
 	private static String parseInput(String input, Game game){
-		Pattern pattern = Pattern.compile("^[a-zA-Z](, *[a-zA-Z])*$");
+		Pattern pattern = Pattern.compile("^[a-zA-Z]( +[a-zA-Z])*$");
 		Matcher matcher = pattern.matcher(input);
 		String response = "";
 		if(matcher.matches()){
-			String[] guesses = input.split(", *");
-			if(!game.addRow(new Row(new ArrayList<String>(Arrays.asList(guesses))))){
-				response = "Incorrect number of pegs entered";
+			input = input.toUpperCase();
+			String[] guesses = input.split(" ");
+			if(!game.addRow(new Row(new ArrayList<String>(Arrays.asList(guesses)), game.getKey()))){
+				response = "Incorrect number of pegs entered.";
+				if(!game.isSolved()){
+					response += "\n\nEnter your next guess:";
+				}
+			}else{
+				response = game.toString();
+				response += "\n\nEnter your next guess:";
 			}
 		}else if(input.equalsIgnoreCase("quit")){
 			quit = true;
