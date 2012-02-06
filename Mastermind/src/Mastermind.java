@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Mastermind {
 	private static boolean quit = false;
-	private static String helptext = "Type 'h' to see this menu, type 'quit' to exit the game. Enter all row guesses in the format 'R G B'.";
+	private static String helptext = "Type 'rules' to see the rules of the game. Type 'quit' to exit the game. Enter all row guesses in the format 'R G B'.";
 	private static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -55,6 +55,22 @@ public class Mastermind {
 			}
 		}else if(input.equalsIgnoreCase("quit")){
 			quit = true;
+		}else if(input.equalsIgnoreCase("rules")){
+			response = "\nThe rules of Mastermind are simple: guess what combination of colors the computer has in as few turns as possible." +
+							"\nIn every game, the computer will have a set combination of colors (chosen randomly each game), and it's your job to guess " +
+							"which colors those are and the order in which they appear. \nOn easy mode, the computer chooses 4 colors from a set of 6 colors: " +
+							"Red(R), Orange(O), Blue(B), Green(G), Yellow(Y), and Purple(P).\nRemember that the computer can choose more than one of the same color! " +
+							"Also, you should always use the single-character form of the colors when guessing.\nFor example, if you think that the combination " +
+							"is 'Red, Blue, Red, Yellow', you should type 'R B R Y' - leaving a space between each letter.\nOn hard mode, a new color, Cyan(C), " +
+							"is added, and the computer picks 5 colors instead of 4.\n\nAfter each guess, the computer will give you a certain number " +
+							"of white and black pegs.\nThe number of white pegs indicates how many colors you've guessed correctly that AREN'T in the right " +
+							"spot.\nThe number of black pegs indicates how many colors you've guessed correctly that ARE in the right spot.\nFor example, " +
+							"say the correct answer is 'R B Y Y' and you just guessed 'R O O B', you will be given the message (1W, 1B).\nThis means you " +
+							"have one white peg (you guessed 'Blue' but it wasn't in the right spot) and one black peg (you guessed 'Red' in the correct spot)." +
+							"\n\nThat's about all there is to it!\nGood luck and try to guess the right answer in as few turns as possible!\n\nOh, also, " +
+							"your stats (the number of turns taken, difficulty chosen, number of hints used) is recorded at the end of each game along with " +
+							"the time and date.\nSo shoot for the high score, and don't let anyone think they can beat you!\n\n";
+			response += helptext;
 		}else{
 			response = helptext;
 		}
@@ -66,7 +82,7 @@ public class Mastermind {
 		print("Enter a game mode, either 'easy' or 'hard'.");
 		String mode = scanner.nextLine().toLowerCase();
 		while ( !(mode.equalsIgnoreCase("easy") || mode.equalsIgnoreCase("hard"))){
-			print(mode+" is not a valid game mode. Please choose either 'easy' or 'hard'.");
+			print("'" +mode+ "'" +" is not a valid game mode. Please choose either 'easy' or 'hard'.");
 			mode = scanner.nextLine();
 		}
 		
