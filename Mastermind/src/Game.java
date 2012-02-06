@@ -31,10 +31,11 @@ public class Game {
 		return "Hint";
 	}
 	
-	public boolean addRow(Row row){
+	public boolean addRow(Row row, Row key){
 		if(row.size() != mode.getSlots()){
 			return false;
 		}
+		row.init(key);
 		board.add(row);
 		return true;
 	}

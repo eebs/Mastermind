@@ -38,14 +38,21 @@ public class Mastermind {
 	}
 	
 	private static String parseInput(String input, Game game){
+		input = input.trim();
 		Pattern pattern = Pattern.compile("^[a-zA-Z]( +[a-zA-Z])*$");
 		Matcher matcher = pattern.matcher(input);
 		String response = "";
 		if(matcher.matches()){
 			input = input.toUpperCase();
-			String[] guesses = input.split(" ");
-			if(!game.addRow(new Row(new ArrayList<String>(Arrays.asList(guesses)), game.getKey()))){
-				response = "Incorrect number of pegs entered.";
+			String[] guesses = input.split(" +");
+			for(int i = 0; i < guesses.length; i++){
+				if(!Arrays.asList(game.getMode().getAvailableColors()).contains(guesses[i])){
+					response = "Invalid color entered. Valid color choices are " + game.getMode().getAvailableColorsString();
+					return response;
+				}
+			}
+			if(!game.addRow(new Row(new ArrayList<String>(Arrays.asList(guesses))), game.getKey())){
+				response = "Incorrect number of pegs entered. Expecting " + game.getMode().getSlots() + " pegs.";
 				if(!game.isSolved()){
 					response += "\n\nEnter your next guess:";
 				}
@@ -72,7 +79,8 @@ public class Mastermind {
 					"the time and date.\nSo shoot for the high score, and don't let anyone think they can beat you!\n\n";
 			response += helptext;
 		}else{
-			response = helptext;
+			response = "Invalid input. ";
+			response += helptext;
 		}
 		return response;
 	}
@@ -89,7 +97,7 @@ public class Mastermind {
 		GameMode gameMode = GameMode.factory(mode);
 		Game game = new Game(gameMode);
 		
-		print("Game started on " + mode + " mode.");
+		print("Game started on " + mode + " mode. Valid color choices are " + gameMode.getAvailableColorsString());
 		print(helptext);
 		
 		return game;

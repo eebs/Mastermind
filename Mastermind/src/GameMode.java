@@ -47,4 +47,16 @@ abstract class GameMode {
 	public void setSlots(int slots) {
 		this.slots = slots;
 	}
+	
+	public String[] getAvailableColors(){
+		return availableColors;
+	}
+	
+	public String getAvailableColorsString(){
+		String colorString = "";
+		for(int i = 0; i < availableColors.length; i++){
+			colorString += availableColors[i] + " ";
+		}
+		return colorString;
+	}
 }

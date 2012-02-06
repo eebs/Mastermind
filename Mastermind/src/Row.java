@@ -10,9 +10,8 @@ public class Row {
 	public Row(ArrayList<String> holes){
 		this.holes = holes;
 	}
-
-	public Row(ArrayList<String> holes, Row key){
-		this.holes = holes;
+	
+	public Row init(Row key){
 		ArrayList<Integer> perfectMatches = new ArrayList<Integer>();
 		ArrayList<Integer> colorMatches = new ArrayList<Integer>();
 		for(int i = 0; i < key.size(); i++){
@@ -34,6 +33,7 @@ public class Row {
 				}
 			}
 		}
+		return this;
 	}
 
 	public boolean equals(Row newRow){
@@ -51,5 +51,9 @@ public class Row {
 		}
 		output += " - (" + numColorCorrect + "W, " + numHoleCorrect + "B)";
 		return output;
+	}
+	
+	public ArrayList<String> getHoles(){
+		return holes;
 	}
 }
