@@ -93,7 +93,7 @@ public class Row {
 	/**
 	 * Returns the peg holes.
 	 *
-	 * @return
+	 * @return ArrayList<String>
 	 */
 	public ArrayList<String> getHoles(){
 		return holes;

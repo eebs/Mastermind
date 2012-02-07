@@ -15,7 +15,7 @@ public class Mastermind {
 	/**
 	 * Game help text.
 	 */
-	private static String helptext = "Type 'rules' to see the rules of the game. Type 'quit' to exit the game. Enter all row guesses in the format 'R G B'.";
+	private static String helptext = "Type 'rules', 'hint', or 'quit' for additional options. Enter all row guesses in the format 'R G B'.";
 
 	/**
 	 * Static Scanner class used for user input.
@@ -82,7 +82,7 @@ public class Mastermind {
 				}
 			}else{
 				response = game.toString();
-				response += "\n\nEnter your next guess:";
+				response += "\n\nEnter your next guess. Valid color choices are " + game.getMode().getAvailableColorsString();
 			}
 		}else if(input.equalsIgnoreCase("quit")){
 			quit = true;
@@ -104,7 +104,7 @@ public class Mastermind {
 			response += helptext;
 		}else if(input.equalsIgnoreCase("hint")){
 			response = game.getHint();
-			response += "\n\nEnter your next guess:";
+			response += "\n\nEnter your next guess. Valid color choices are " + game.getMode().getAvailableColorsString();
 		}else{
 			response = "Invalid input. ";
 			response += helptext;
