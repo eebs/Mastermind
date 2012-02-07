@@ -49,6 +49,7 @@ public class Mastermind {
 				}
 			}
 		}
+		print("Thanks for playing Mastermind!\n\nCredits:\nSam Brown\nCaleb Cousins\nEebs Kobeissi");
 		//log the final game
 		statGatherer.logGame(game);
 	}
@@ -101,6 +102,9 @@ public class Mastermind {
 					"your stats (the number of turns taken, difficulty chosen, number of hints used) is recorded at the end of each game along with " +
 					"the time and date.\nSo shoot for the high score, and don't let anyone think they can beat you!\n\n";
 			response += helptext;
+		}else if(input.equalsIgnoreCase("hint")){
+			response = game.getHint();
+			response += "\n\nEnter your next guess:";
 		}else{
 			response = "Invalid input. ";
 			response += helptext;

@@ -22,7 +22,7 @@ public class Game {
 	 * Hints already hinted. This prevents the same hint being
 	 * hinted more than once.
 	 */
-	private ArrayList<Integer> hints;
+	private ArrayList<Integer> hints = new ArrayList<Integer>();
 	
 	/**
 	 * Constructor. Creates a game based on the game mode.
@@ -58,8 +58,26 @@ public class Game {
 	 * @return String
 	 */
 	public String getHint(){
-		//TODO: Finish this function.
-		return "Hint";
+		boolean hintAdded = false;
+		int position;
+		Random random = new Random();
+		while(!hintAdded && (hints.size() != key.size())){
+			position = random.nextInt(mode.getSlots());
+			if(!hints.contains(position)){
+				hints.add(position);
+				hintAdded = true;
+			}
+		}
+
+		String output = "";
+		for(int i = 0; i < key.size(); i++){
+			if(hints.contains(i)){
+				output += "[" + key.getHoles().get(i) + "] ";
+			}else{
+				output += "[ ] ";
+			}
+		}
+		return output;
 	}
 	
 	/**
