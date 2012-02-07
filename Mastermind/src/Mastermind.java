@@ -6,10 +6,27 @@ import java.util.regex.Pattern;
 
 
 public class Mastermind {
+
+	/**
+	 * Whether the user wants to quit or not.
+	 */
 	private static boolean quit = false;
+
+	/**
+	 * Game help text.
+	 */
 	private static String helptext = "Type 'rules' to see the rules of the game. Type 'quit' to exit the game. Enter all row guesses in the format 'R G B'.";
+
+	/**
+	 * Static Scanner class used for user input.
+	 */
 	private static Scanner scanner = new Scanner(System.in);
-	
+
+	/**
+	 * Main function. Creates the game and loops until the user quits.
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		StatGatherer statGatherer = new StatGatherer();
 
@@ -21,7 +38,7 @@ public class Mastermind {
 			String input = scanner.nextLine();
 			String response = parseInput(input, game);
 			print(response);
-			
+
 			if (game.isSolved()){
 				//want to start a new game.
 				print("Your game has ended.  Would you like to play again? (y/n)");
@@ -35,7 +52,14 @@ public class Mastermind {
 		//log the final game
 		statGatherer.logGame(game);
 	}
-	
+
+	/**
+	 * Parses user input, returning a string response.
+	 *
+	 * @param input
+	 * @param game
+	 * @return String
+	 */
 	private static String parseInput(String input, Game game){
 		input = input.trim();
 		Pattern pattern = Pattern.compile("^[a-zA-Z]( +[a-zA-Z])*$");
@@ -83,7 +107,12 @@ public class Mastermind {
 		}
 		return response;
 	}
-	
+
+	/**
+	 * Creates a new game object.
+	 *
+	 * @return Game
+	 */
 	private static Game startNewGame(){
 		//enforce a valid game mode selection
 		print("Enter a game mode, either 'easy' or 'hard'.");
@@ -92,22 +121,22 @@ public class Mastermind {
 			print("'" +mode+ "'" +" is not a valid game mode. Please choose either 'easy' or 'hard'.");
 			mode = scanner.nextLine();
 		}
-		
+
 		GameMode gameMode = GameMode.factory(mode);
 		Game game = new Game(gameMode);
-		
+
 		print("Game started on " + mode + " mode. Valid color choices are " + gameMode.getAvailableColorsString());
 		print(helptext);
-		
+
 		return game;
 	}
 
+	/**
+	 * Proxy to System.out.println()
+	 *
+	 * @param s
+	 */
 	private static void print(String s){
 		System.out.println(s);
 	}
-
-	private static void print(){
-		System.out.println();
-	}
-
 }

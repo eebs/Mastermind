@@ -3,13 +3,33 @@ import java.util.Random;
 
 public class Game {
 
+	/**
+	 * The game's mode.
+	 */
 	private GameMode mode;
+
+	/**
+	 * Game's board.
+	 */
 	private ArrayList<Row> board = new ArrayList<Row>();
+
+	/**
+	 * The game's key. This is the game's solution.
+	 */
 	private Row key;
-	private String helpText;
+
+	/**
+	 * Hints already hinted. This prevents the same hint being
+	 * hinted more than once.
+	 */
 	private ArrayList<Integer> hints;
-	private int hintCount;
 	
+	/**
+	 * Constructor. Creates a game based on the game mode.
+	 * Randomly generates the key based on the game mode.
+	 *
+	 * @param gameMode
+	 */
 	public Game(GameMode gameMode) {
 		mode = gameMode;
 		ArrayList<String> keyColors = new ArrayList<String>();
@@ -20,6 +40,11 @@ public class Game {
 		key = new Row(keyColors);
 	}
 	
+	/**
+	 * Returns whether the game is solved in the current state.
+	 *
+	 * @return boolean
+	 */
 	public boolean isSolved(){
 		if(board.size() == 0){
 			return false;
@@ -27,10 +52,23 @@ public class Game {
 		return key.equals(board.get(board.size() - 1));
 	}
 	
+	/**
+	 * Returns a hint
+	 *
+	 * @return String
+	 */
 	public String getHint(){
+		//TODO: Finish this function.
 		return "Hint";
 	}
 	
+	/**
+	 * Adds a row to the board.
+	 *
+	 * @param row
+	 * @param key
+	 * @return boolean Whether the row was added successfully or not.
+	 */
 	public boolean addRow(Row row, Row key){
 		if(row.size() != mode.getSlots()){
 			return false;
@@ -40,6 +78,12 @@ public class Game {
 		return true;
 	}
 
+	/**
+	 * Returns a string representation of the game board.
+	 * Outputs many blank lines to 'clear' the screen.
+	 *
+	 * @return String
+	 */
 	public String toString(){
 		for(int i = 0; i < 80; i++){
 			System.out.println();
@@ -58,33 +102,57 @@ public class Game {
 		return output;
 	}
 
+	/**
+	 * Gets the game mode.
+	 *
+	 * @return GameMode
+	 */
 	public GameMode getMode() {
 		return mode;
 	}
 
+	/**
+	 * Sets the game mode.
+	 *
+	 * @param mode
+	 */
 	public void setMode(GameMode mode) {
 		this.mode = mode;
 	}
 
-	public int getHintCount() {
-		return hintCount;
-	}
-
-	public void setHintCount(int hintCount) {
-		this.hintCount = hintCount;
-	}
-
+	/**
+	 * Returns the number of current guesses.
+	 *
+	 * @return int
+	 */
 	public int getNumberOfGuesses(){
 		return board.size();
 	}
 
+	/**
+	 * Returns the key.
+	 *
+	 * @return Row
+	 */
 	public Row getKey() {
 		return key;
 	}
 
+	/**
+	 * Sets the key.
+	 *
+	 * @param key
+	 */
 	public void setKey(Row key) {
 		this.key = key;
 	}
 	
+	/**
+	 * Gets the number of current hints.
+	 *
+	 * @return int
+	 */
+	public int getHintCount(){
+		return hints.size();
+	}
 }
-
