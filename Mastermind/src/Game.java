@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Game class. Has a game mode, the board, and the solution.
+ *
+ * @author Eebs Kobeissi
+ * @author Sam Brown
+ */
 public class Game {
 
 	/**

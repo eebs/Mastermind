@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 /**
  * Abstract base class for game modes.
+ *
+ * @author Eebs Kobeissi
  */
 abstract class GameMode {
 

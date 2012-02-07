@@ -4,7 +4,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Driver class, loops over input running the game.
+ *
+ * @author Sam Brown
+ * @author Eebs Kobeissi
+ * @author Caleb Cousins
+ */
 public class Mastermind {
 
 	/**
@@ -49,7 +55,7 @@ public class Mastermind {
 				}
 			}
 		}
-		print("Thanks for playing Mastermind!\n\nCredits:\nSam Brown\nCaleb Cousins\nEebs Kobeissi");
+		print("Thanks for playing Mastermind!\n\nCredits:\nSam 'Fancy Pants' Brown\nEebs 'Awesome Sauce' Kobeissi\nCaleb Cousins");
 		//log the final game
 		statGatherer.logGame(game);
 	}

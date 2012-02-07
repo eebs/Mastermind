@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * Row class. Contains the holes, and the number correct
+ * colors and pegs.
+ *
+ * @author Sam Brown
+ * @author Eebs Kobeissi
+ *
+ */
 public class Row {
 
 	/**

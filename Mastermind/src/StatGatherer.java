@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.lang.StringBuffer;
 import java.util.Date;
 
+/**
+ * Logs game metrics into a .csv file.
+ *
+ * @author Sam Brown
+ */
 public class StatGatherer {
 	String fName = "UsageLog.csv";
 	String[] headerItems = {"date", "difficulty", "guesses", "hints"};
