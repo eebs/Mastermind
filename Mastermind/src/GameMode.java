@@ -54,7 +54,8 @@ abstract class GameMode {
 	
 	public String getAvailableColorsString(){
 		String colorString = "";
-		for(int i = 0; i < availableColors.length; i++){
+		int length = this.getClass().getName().equalsIgnoreCase("GameModeHard") ? availableColors.length : availableColors.length - 1;
+		for(int i = 0; i < length; i++){
 			colorString += availableColors[i] + " ";
 		}
 		return colorString;

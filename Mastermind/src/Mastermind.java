@@ -14,7 +14,6 @@ public class Mastermind {
 		StatGatherer statGatherer = new StatGatherer();
 
 		print("Hello, and welcome to Mastermind!");
-		//helptext
 		
 		Game game = startNewGame();
 
