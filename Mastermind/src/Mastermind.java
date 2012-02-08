@@ -46,12 +46,23 @@ public class Mastermind {
 			print(response);
 
 			if (game.isSolved()){
-				//want to start a new game.
+				boolean validResp = false;
+				//do you want to start a new game.
 				print("Your game has ended.  Would you like to play again? (y/n)");
 				String replay = scanner.nextLine();
-				if (replay.toLowerCase().equals("y")){
-					statGatherer.logGame(game);
-					game = startNewGame();
+				while(!validResp){
+					if (replay.toLowerCase().equals("y")){
+						validResp = true;
+						statGatherer.logGame(game);
+						game = startNewGame();
+					}
+					else if(replay.toLowerCase().equals("n")){
+						validResp = true;
+					}
+					else{
+						print("'"+replay+"' is not a valid response.  Would you like to play again? (y/n)");
+						replay = scanner.nextLine();
+					}
 				}
 			}
 		}
